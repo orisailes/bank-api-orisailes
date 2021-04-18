@@ -11,6 +11,7 @@ useEffect(() => {
   
   const fetchData = async () => {
     const data = await axios.get('/api/clients');
+    console.log(data)
     setUsers(data.data);
     setUsersDidFetched(true)
   }

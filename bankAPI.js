@@ -1,7 +1,9 @@
 const express = require('express');
+const cors = require('cors');
 const utils = require('./utils')
 const path = require('path')
 const app = express();
+app.use(cors());
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, '../client/build')))

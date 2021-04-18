@@ -5,12 +5,13 @@
   "main": "bankAPI.js",
   "scripts": {
     "start": "node ./bankAPI.js",
-    "heroku-postbuild":"cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "nodemon": "^2.0.7"
   }
