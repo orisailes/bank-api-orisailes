@@ -1,20 +1,17 @@
 {
-  "name": "11.1",
+  "name": "bank-API",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "bankAPI.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/orisailes/bank-api-orisailes.git"
+    "start": "node ./bankAPI.js",
+    "heroku-postbuild":"cd client && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/orisailes/bank-api-orisailes/issues"
-  },
-  "homepage": "https://github.com/orisailes/bank-api-orisailes#readme"
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
 }

@@ -1,9 +1,16 @@
 const express = require('express');
 const utils = require('./utils')
+const path = require('path')
 const app = express();
-app.use(express.json());
-const PORT = 3001;
 
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, '../client/build')))
+} else {
+    app.use(express.static(path.join(__dirname, '../client/public')))
+}
+
+app.use(express.json());
+const PORT = process.env.PORT || 3001;
 
 app.get('/api/clients', (req, res) => {
     const clients = utils.getAllClients();
@@ -14,10 +21,10 @@ app.get('/api/clients', (req, res) => {
 app.get('/api/clients/filter', (req, res) => {
     let clients = utils.getAllClients();
     console.log(`get clients with filter commited`);
-    const sortTerms = req.query; 
+    const sortTerms = req.query;
     const sortKey = Object.keys(sortTerms)[0]
     const order = sortTerms[sortKey]
-    clients = clients.sort((a,b)=>{
+    clients = clients.sort((a, b) => {
         return order === "up" ? b[sortKey] - a[sortKey] : a[sortKey] - b[sortKey]
     })
     res.status(200).send(clients);
@@ -79,7 +86,7 @@ app.put('/api/clients/transfer', (req, res) => {
         amount
     } = req.query;
     if (!from || !to || !amount) res.status(400).send('invalid queries. transfer hasnt been made')
-    res.status(200).send(utils.transferMoney(from,to,amount))
+    res.status(200).send(utils.transferMoney(from, to, amount))
 })
 
 app.listen(PORT, () => {
